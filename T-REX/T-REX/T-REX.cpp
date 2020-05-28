@@ -9,6 +9,7 @@ void changeDirection(char key);
 void update();
 void clearScreen();
 void printMap();
+void generateFood();
 
 bool running;
 
@@ -17,12 +18,18 @@ const int mapwidth = 20;
 const int mapheight = 20;
 const int size = mapwidth * mapheight;
 int map[size];
+int s;
+int headxpos;
+int headypos;
 int main()
 {
 	run();
 	return 0;
 }
-
+void clearScreen() {
+	// Clear the screen
+	system("cls");
+}
 void run()
 {
 	initMap();
@@ -40,8 +47,6 @@ void run()
 		_sleep(500);
 	}
 
-	std::cout << "\t\t!!!Game over!" << std::endl << "\t\tYour score is: " << food;
-
 	std::cin.ignore();
 }
 
@@ -51,6 +56,28 @@ void changeDirection(char key) {
 		direction = 0;
 		break;
 	}
+}
+void initMap()
+{
+	// Places the initual head location in middle of map
+	headxpos = mapwidth - 2;
+	headypos = mapheight / 2;
+	map[headxpos + headypos * mapwidth] = 1;
+
+	// Places top and bottom walls
+	for (int x = 0; x < mapwidth; ++x) {
+		map[x] = -1;
+		map[x + (mapheight - 1) * mapwidth] = -1;
+	}
+
+	// Places left and right walls
+	for (int y = 0; y < mapheight; y++) {
+		map[0 + y * mapwidth] = -1;
+		map[(mapwidth - 1) + y * mapwidth] = -1;
+	}
+
+	// Generates first food
+	generateFood();
 }
 char getMapValue(int value)
 {
@@ -77,4 +104,19 @@ void printMap()
 		std::cout << std::endl;
 	}
 	std::cout << "Vas schet:" << s;
+}
+
+char getMapValue(int value)
+{
+	// Returns a part of snake body
+	if (value > 0) return 'o';
+
+	switch (value) {
+		// Return wall
+	case -1: return 'X';
+		// Return food
+	case -2: return 'O';
+	}
+
+	return ' ';
 }
