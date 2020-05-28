@@ -49,7 +49,20 @@ void run()
 
 	std::cin.ignore();
 }
+int xe = 0;
+int ye = 0;
+void generateFood() {
+	xe = 0;
+	ye = 0;
+	// Generate random x and y values within the map
+	xe = mapwidth - 3;
+	ye = mapheight - 2;
 
+	// If location is not free try again
+
+// Place new food
+	map[xe + ye * mapwidth] = -2;
+}
 void changeDirection(char key) {
 	switch (key) {
 	case 'w':
