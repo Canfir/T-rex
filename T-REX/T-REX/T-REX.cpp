@@ -52,6 +52,13 @@ void run()
 
 	std::cin.ignore();
 }
+void changeDirection(char key) {
+	switch (key) {
+	case 'w':
+		direction = 0;
+		break;
+	}
+}
 int xe = 0;
 int ye = 0;
 void generateFood() {
@@ -60,13 +67,6 @@ void generateFood() {
 	xe = mapwidth - 3;
 	ye = mapheight - 2;
 	map[xe + ye * mapwidth] = -2;
-}
-void changeDirection(char key) {
-	switch (key) {
-	case 'w':
-		direction = 0;
-		break;
-	}
 }
 void move(int dx, int dy) {
 	int newx = headxpos + dx;
@@ -138,14 +138,4 @@ void printMap()
 		std::cout << std::endl;
 	}
 	std::cout << "Vas schet:" << s;
-}
-
-char getMapValue(int value)
-{
-	if (value > 0) return 'o';
-	switch (value) {
-	case -1: return 'X';
-	case -2: return 'O';
-	}
-	return ' ';
 }
