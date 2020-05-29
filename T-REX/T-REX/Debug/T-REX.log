@@ -1,2 +1,3 @@
 ﻿  T-REX.cpp
-  T-REX.vcxproj -> C:\Users\admin\Documents\GitHub\T-rex\T-REX\Debug\T-REX.exe
+C:\Users\admin\Documents\GitHub\T-rex\T-REX\T-REX\T-REX.cpp(107,1): error C2084: функция "char getMapValue(int)" уже имеет текст реализации
+C:\Users\admin\Documents\GitHub\T-rex\T-REX\T-REX\T-REX.cpp(79): message : см. предыдущее определение "getMapValue"
